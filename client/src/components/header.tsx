@@ -18,11 +18,11 @@ export default function Header() {
           {/* User Profile Section */}
           <div className="hidden md:flex items-center space-x-4">
             <div className="text-right">
-              <p className="text-sm font-medium text-slate-700">John Smith</p>
-              <p className="text-xs text-slate-500">Data Analyst</p>
+              <p className="text-sm font-medium text-slate-700">User</p>
+              <p className="text-xs text-slate-500">Desg</p>
             </div>
             <div className="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center">
-              <span className="text-sm font-medium text-slate-600">JS</span>
+              <span className="text-sm font-medium text-slate-600">CP</span>
             </div>
           </div>
         </div>
