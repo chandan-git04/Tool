@@ -161,7 +161,7 @@ export default function SearchInterface({ isLoading, setIsLoading }: SearchInter
     <div className="mb-8">
       {/* Main Search Box */}
       <div className="relative mb-6">
-        <div className="relative bg-white rounded-2xl search-shadow hover:search-shadow-hover transition-all duration-300 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary border border-slate-200">
+        <div className="relative bg-white dark:bg-slate-800 rounded-2xl search-shadow hover:search-shadow-hover transition-all duration-300 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary border border-slate-200 dark:border-slate-700">
           <Input
             type="text"
             placeholder="Ask anything"
@@ -184,8 +184,8 @@ export default function SearchInterface({ isLoading, setIsLoading }: SearchInter
                   onClick={toggleVoice}
                   className={`p-3 rounded-xl transition-all duration-200 ${
                     isListening 
-                      ? 'text-red-500 bg-red-50 hover:bg-red-100' 
-                      : 'text-slate-400 hover:text-primary hover:bg-slate-50'
+                    ? 'text-red-500 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/30' 
+                      : 'text-slate-400 dark:text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-700'
                   }`}
                   disabled={isLoading}
                 >
@@ -215,7 +215,7 @@ export default function SearchInterface({ isLoading, setIsLoading }: SearchInter
           variant="ghost"
           onClick={handleClearHistory}
           disabled={isLoading}
-          className="flex items-center space-x-2 px-6 py-3 text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-xl transition-all duration-200"
+         className="flex items-center space-x-2 px-6 py-3 text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all duration-200"
         >
           <Trash2 className="w-5 h-5" />
           <span>Clear History</span>
@@ -225,7 +225,7 @@ export default function SearchInterface({ isLoading, setIsLoading }: SearchInter
           variant="ghost"
           onClick={handleExportChat}
           disabled={isLoading}
-          className="flex items-center space-x-2 px-6 py-3 text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-xl transition-all duration-200"
+          className="flex items-center space-x-2 px-6 py-3 text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all duration-200"
         >
           <Download className="w-5 h-5" />
           <span>Export Chat</span>

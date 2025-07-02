@@ -15,10 +15,10 @@ export default function Home() {
         <div className="w-full max-w-4xl">
           {/* Welcome Section */}
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-light text-slate-800 mb-4">
+            <h2 className="text-4xl md:text-5xl font-light text-slate-800 dark:text-slate-200 mb-4">
               How can I help you today?
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
               Ask questions, analyze data, or explore insights with our intelligent search interface
             </p>
           </div>
@@ -29,15 +29,15 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="py-6 px-4 border-t border-slate-100">
+      <footer className="py-6 px-4 border-t border-slate-100 dark:border-slate-800">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-6 text-sm text-slate-500">
-              <a href="#" className="hover:text-slate-700 transition-colors">Privacy</a>
-              <a href="#" className="hover:text-slate-700 transition-colors">Terms</a>
-              <a href="#" className="hover:text-slate-700 transition-colors">Help</a>
+            <div className="flex items-center space-x-6 text-sm text-slate-500 dark:text-slate-400">
+              <a href="#" className="hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Privacy</a>
+              <a href="#" className="hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Terms</a>
+              <a href="#" className="hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Help</a>
             </div>
-            <div className="flex items-center space-x-4 text-sm text-slate-500">
+            <div className="flex items-center space-x-4 text-sm text-slate-500 dark:text-slate-400">
               <span>Powered by AI</span>
               <div className="flex items-center space-x-1">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
