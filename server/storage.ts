@@ -93,6 +93,7 @@ export class MemStorage implements IStorage {
       query: insertQuery.query,
       response: insertQuery.response || null,
       isVoiceInput: insertQuery.isVoiceInput || false,
+      dataSources: insertQuery.dataSources || null,
       createdAt: new Date() 
     };
     this.queries.set(id, query);

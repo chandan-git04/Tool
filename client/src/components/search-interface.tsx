@@ -7,7 +7,7 @@ import { Mic, Send, Trash2, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { useVoiceRecognition } from "@/hooks/use-voice-recognition";
-
+import DataSourceSelector from "./data-source-selector";
 interface SearchInterfaceProps {
   isLoading: boolean;
   setIsLoading: (loading: boolean) => void;
@@ -15,6 +15,7 @@ interface SearchInterfaceProps {
 
 export default function SearchInterface({ isLoading, setIsLoading }: SearchInterfaceProps) {
   const [query, setQuery] = useState("");
+  const [selectedDataSources, setSelectedDataSources] = useState<string[]>([]);
   const { toast } = useToast();
   const queryClient = useQueryClient();
   
@@ -32,11 +33,12 @@ export default function SearchInterface({ isLoading, setIsLoading }: SearchInter
   }
 
   const submitQueryMutation = useMutation({
-    mutationFn: async (queryData: { query: string; isVoiceInput: boolean }) => {
+    mutationFn: async (queryData: { query: string; isVoiceInput: boolean; dataSources: string[] }) => {
       const response = await apiRequest("POST", "/api/queries", {
         sessionId: 1, // Default session
         query: queryData.query,
         isVoiceInput: queryData.isVoiceInput,
+        dataSources: queryData.dataSources,
       });
       return response.json();
     },
@@ -107,12 +109,29 @@ export default function SearchInterface({ isLoading, setIsLoading }: SearchInter
   });
 
   const handleSubmit = () => {
-    if (!query.trim()) return;
+   if (!query.trim()) {
+      toast({
+        title: "Empty query",
+        description: "Please enter a question to search.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (selectedDataSources.length === 0) {
+      toast({
+        title: "No data sources selected",
+        description: "Please select at least one data source to search.",
+        variant: "destructive",
+      });
+      return;
+    }
     
     setIsLoading(true);
     submitQueryMutation.mutate({
       query: query.trim(),
       isVoiceInput: false,
+      dataSources: selectedDataSources,
     });
     
     setTimeout(() => setIsLoading(false), 2000);
@@ -159,6 +178,8 @@ export default function SearchInterface({ isLoading, setIsLoading }: SearchInter
 
   return (
     <div className="mb-8">
+      {/* Data Source Selection */}
+      <DataSourceSelector onDataSourceChange={setSelectedDataSources} />
       {/* Main Search Box */}
       <div className="relative mb-6">
         <div className="relative bg-white dark:bg-slate-800 rounded-2xl search-shadow hover:search-shadow-hover transition-all duration-300 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary border border-slate-200 dark:border-slate-700">

@@ -8,11 +8,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Submit a new query
   app.post("/api/queries", async (req, res) => {
     try {
-      const queryData = insertQuerySchema.parse(req.body);
+      // Extend the type to include dataSources
+      type QueryData = {
+        sessionId: number;
+        query: string;
+        response?: string | null;
+        isVoiceInput?: boolean | null;
+        dataSources?: string[];
+      };
+      const queryData = insertQuerySchema.parse(req.body) as QueryData;
       
-      // Simulate AI processing
-      const aiResponse = `I understand you're asking about: "${queryData.query}". This is a simulated AI response that would normally be processed by REG AI Insight's intelligent analysis system.`;
+           // Simulate AI processing with data source information
+      const dataSourcesText = queryData.dataSources && queryData.dataSources.length > 0 
+        ? ` Searched across ${queryData.dataSources.join(', ')} data sources.`
+        : '';
       
+      const aiResponse = `I understand you're asking about: "${queryData.query}".${dataSourcesText} This is a simulated AI response that would normally be processed by REG AI Insight's intelligent analysis system using the selected data sources.`;
       const query = await storage.createQuery({
         ...queryData,
         response: aiResponse,

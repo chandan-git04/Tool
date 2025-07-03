@@ -2,6 +2,7 @@ import Header from "@/components/header";
 import SearchInterface from "@/components/search-interface";
 import QuickActions from "@/components/quick-actions";
 import LoadingOverlay from "@/components/loading-overlay";
+import QueryHistory from "@/components/query-history";
 import { useState } from "react";
 
 export default function Home() {
@@ -25,6 +26,10 @@ export default function Home() {
 
           <SearchInterface isLoading={isLoading} setIsLoading={setIsLoading} />
           <QuickActions />
+          {/* Query History */}
+          <div className="mt-12">
+            <QueryHistory />
+          </div>
         </div>
       </main>
 
