@@ -3,6 +3,8 @@ import { BarChart3, Search, Zap } from "lucide-react";
 export default function QuickActions() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+      {/* Data Analysis - Commented out as requested */}
+      {/* 
       <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-all duration-200 cursor-pointer group">
         <div className="flex items-center space-x-3 mb-3">
           <div className="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 transition-colors">
@@ -12,7 +14,10 @@ export default function QuickActions() {
         </div>
         <p className="text-sm text-slate-600 dark:text-slate-400">Analyze trends, patterns, and insights from your data</p>
       </div>
+      */}
 
+      {/* Smart Search - Commented out as requested */}
+      {/* 
       <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-all duration-200 cursor-pointer group">
         <div className="flex items-center space-x-3 mb-3">
           <div className="p-2 bg-green-50 dark:bg-green-900/20 rounded-lg group-hover:bg-green-100 dark:group-hover:bg-green-900/30 transition-colors">
@@ -22,7 +27,10 @@ export default function QuickActions() {
         </div>
         <p className="text-sm text-slate-600 dark:text-slate-400">Find information quickly with intelligent search</p>
       </div>
+      */}
 
+      {/* AI Insights - Commented out as requested */}
+      {/* 
       <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-all duration-200 cursor-pointer group">
         <div className="flex items-center space-x-3 mb-3">
           <div className="p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg group-hover:bg-purple-100 dark:group-hover:bg-purple-900/30 transition-colors">
@@ -32,6 +40,7 @@ export default function QuickActions() {
         </div>
         <p className="text-sm text-slate-600 dark:text-slate-400">Get intelligent recommendations and insights</p>
       </div>
+      */}
     </div>
   );
 }
