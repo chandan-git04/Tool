@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Database, FileText, Link } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Database, FileText, Link, ChevronDown, X } from "lucide-react";
 
 interface DataSourceSelectorProps {
   onDataSourceChange: (selectedSources: string[]) => void;
@@ -13,7 +14,7 @@ export default function DataSourceSelector({ onDataSourceChange }: DataSourceSel
   const [selectedPrimarySources, setSelectedPrimarySources] = useState<string[]>([]);
   const [selectedSecondarySource, setSelectedSecondarySource] = useState<string>("");
 
-  // Primary data sources (checkboxes)
+  // Primary data sources (dropdown)
   const primarySources = [
     { id: "sierra", name: "Sierra", icon: Database },
     { id: "cree", name: "Cree", icon: Database },
@@ -67,35 +68,53 @@ export default function DataSourceSelector({ onDataSourceChange }: DataSourceSel
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
-        {/* Primary Data Sources - Checkboxes */}
+        {/* Primary Data Sources - Multi-Select Dropdown */}
         <div>
           <h4 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
             Primary Sources (Select multiple)
           </h4>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {primarySources.map((source) => {
-              const IconComponent = source.icon;
-              return (
-                <div
-                  key={source.id}
-                  className="flex items-center space-x-3 p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
-                >
-                  <Checkbox
-                    id={source.id}
-                    checked={selectedPrimarySources.includes(source.id)}
-                    onCheckedChange={(checked) => handlePrimarySourceChange(source.id, checked as boolean)}
-                  />
-                  <label
-                    htmlFor={source.id}
-                    className="flex items-center space-x-2 text-sm font-medium cursor-pointer flex-1"
-                  >
-                    <IconComponent className="w-4 h-4" />
-                    <span>{source.name}</span>
-                  </label>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                className="w-full justify-between text-left font-normal"
+              >
+                <div className="flex items-center space-x-2">
+                  <Database className="w-4 h-4" />
+                  <span>
+                    {selectedPrimarySources.length === 0
+                      ? "Choose primary data sources..."
+                      : `${selectedPrimarySources.length} source${selectedPrimarySources.length > 1 ? 's' : ''} selected`}
+                  </span>
                 </div>
-              );
-            })}
-          </div>
+                <ChevronDown className="w-4 h-4 opacity-50" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-full p-0" align="start">
+              <div className="p-2 space-y-1">
+                {primarySources.map((source) => {
+                  const IconComponent = source.icon;
+                  const isSelected = selectedPrimarySources.includes(source.id);
+                  return (
+                    <div
+                      key={source.id}
+                      className="flex items-center space-x-3 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer"
+                      onClick={() => handlePrimarySourceChange(source.id, !isSelected)}
+                    >
+                      <Checkbox
+                        checked={isSelected}
+                        onChange={() => {}} // Handled by parent click
+                      />
+                      <div className="flex items-center space-x-2 flex-1">
+                        <IconComponent className="w-4 h-4" />
+                        <span className="text-sm font-medium">{source.name}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
 
         {/* Secondary Data Sources - Dropdown */}
